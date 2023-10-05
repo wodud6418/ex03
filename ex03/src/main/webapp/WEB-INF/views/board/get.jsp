@@ -64,6 +64,18 @@
 <%--footer 파일 넣기 --%>    
 <%@ include file="../includes/footer.jsp" %>
 
+<%--댓글처리 자바 스크립트 --%>
+<script src="/resources/js/reply.js"></script>
+<script>
+	
+	reply={reply:"아 졸립다",replyer:"밤샌이", bno:24247856  };
+	//replyService.add(reply);
+	//replyService.getList(2424856, function(a){console.log(a)} );
+	//replyService.del(2);
+	//replyService.modify(6,reply);
+	replyService.get(6,function(a){console.log(a)});
+	</script>
 </body>
 
 </html>
+

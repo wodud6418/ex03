@@ -39,6 +39,12 @@ public class ReplyServiceImpl implements ReplyService {
 		return mapper.get(rno);
 	}
 	
+	@Override
+	public ReplyVO count(Long bno) {
+		return mapper.count(bno);
+	}
+	
+
 
 
 }

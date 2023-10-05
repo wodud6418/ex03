@@ -74,8 +74,14 @@ public class ReplyController {
 	
 	//ex /replies/get/11
 	@GetMapping(value="/get/{rno}")
-	public ReplyVO url(@PathVariable("rno") Long rno){
+	public ReplyVO get(@PathVariable("rno") Long rno){
 		return service.get(rno);	
+	}
+	
+	//ex /replies/count/2424856
+	@PostMapping(value="/count/{bno}")
+	public ReplyVO count(@RequestBody ReplyVO vo) {
+		return new ReplyVO();
 	}
 	
 	

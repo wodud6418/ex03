@@ -20,5 +20,8 @@ public interface ReplyMapper {
 	
 	//5. 한개보기
 	ReplyVO get(Long rno);  
+	
+	//6.총리프개수보기
+	ReplyVO count(Long bno);
 
 }

@@ -53,4 +53,9 @@ public class ReplyServiceTests {
 	public void testget() {
 		service.get(11L);
 	}
+	
+	@Test
+	public void testcount() {
+		service.count(2424856L);
+	}
 }
