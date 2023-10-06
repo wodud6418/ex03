@@ -50,11 +50,11 @@
                             <!-- /.row (nested) -->
                                      </div>
                           <div class="form-group">
-                                  <label><i class="fa fa-comment fa-fw"></i>댓글</label>
+                                  <label><i class="fa fa-comments fa-2x"></i>댓글</label>
                            </div>  
                              <!-- 댓글시작 -->                         
-                             <ol id="chat">
-		                     </ol>
+                             <div class="alert alert-warning alert-dismissable" id="chat">
+		                     </div>
                              <!-- 댓글끝 -->
                              <div class="form-group">
     <label><i class="fa fa-comment fa-fw"></i>댓글작성</label><br/>
@@ -99,8 +99,8 @@ function replyList(){
 		console.log(reply)
 		replyStr="";
 		for(var i=0; i<reply.length; i++){
-			replyStr += "<li> <span hidden>"+reply[i].rno+"</span>" +'<span class="replyModify">'+reply[i].reply+
-			"</span>("+reply[i].replyer+") - " + replyService.time(reply[i].replyDate) +' [<span class="btnDel"><a href="#">X</a></span>] </li>';
+			replyStr += "<li> <span hidden>"+reply[i].rno+"</span>"+reply[i].replyer+" : "+'<span class="replyModify">'+reply[i].reply+
+			"</span> - " + replyService.time(reply[i].replyDate) +' [<span class="btnDel"><a href="#">X</a></span>] </li>';
 		}
 		console.log("넣어야할 리플화면",replyStr);
 		//3.해당하는 위치에 넣어준다.
@@ -155,7 +155,7 @@ $("#chat").on("click",".btnDel",function(e){
 //1.댓글내용이 클릭되면 수정이 가능하도록 입력창으로 변경
 $("#chat").on("click",".replyModify",function(e){  
 	console.log("댓글내용클릭");
-	
+	$(this).removeClass(); //다시 클릭이 안되도록  class 속성삭제
 	var replyData=$(this).text(); //클릭한 댓글 내용
 	console.log("댓글내용",replyData);
 	var rno=$(this).prev().text(); // 클릭한 댓글 번호
@@ -163,15 +163,14 @@ $("#chat").on("click",".replyModify",function(e){
 	var str='<input type="text" value="'+replyData+'">';
 	$(this).html(str).children().focus(); //바로 수정이 가능하도록 포커스 이동
 	//2.포커스가 사라지면 수정이 되도록 js 호출
-	$("#chat").on("blur","input",function(e){  
+	//$("#chat").on("blur","input",function(e){  //누적문제 발생함으로
+	$(':focus').on("blur",function(e){ //현재포커스 기준으로 수정
 		console.log("댓글수정작업");
 		var modifyData=$(this).val(); //변경한 댓글내용읽기
 		console.log("수정할내용:",modifyData);
 		reply={reply:modifyData};     
 		replyService.modify(rno,reply,replyList);  //3.댓글 목록 재갱신 
-	});
-	
-	
+	}); 
 });
 
 
@@ -180,6 +179,10 @@ $("#chat").on("click",".replyModify",function(e){
 </body>
 
 </html>
+
+
+
+
 
 
 
