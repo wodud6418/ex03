@@ -17,7 +17,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            게시글 삭제확인 <a href="good?bno=${board.bno}"><button type="button">좋아요+1</button></a>
+                            게시글 삭제확인 <a href="good?bno=${board.bno}"></a>
                         </div>
                         <div class="panel-body">
                             <div class="row">
