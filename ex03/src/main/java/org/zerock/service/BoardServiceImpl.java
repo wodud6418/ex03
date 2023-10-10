@@ -65,6 +65,12 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
+	public Long replyc(Criteria cri) {
+		return mapper.replyc(cri);
+
+	}
+	
+	@Override
 	public Long count2() {
 		return mapper.count2();
 

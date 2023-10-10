@@ -21,6 +21,10 @@ public interface BoardService {
 	BoardVO	get(Long bno);
 	//6.전체글 개수 가져오기
 	Long count(Criteria cri);
+	
+	//6.전체글 리플수 가져오기
+	Long replyc(Criteria cri);
+	
 	//7.오늘작성게시물개수가져오기
 	Long count2();
 	//8.조회수

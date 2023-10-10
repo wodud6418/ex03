@@ -54,6 +54,11 @@ public interface BoardMapper {
 	
 	//좋아요
 	void updateHao(int bno);
+	
+	//리플이달린 글의개수
+	Long replyc(Criteria cri);
+	
+	
 
 	
 }

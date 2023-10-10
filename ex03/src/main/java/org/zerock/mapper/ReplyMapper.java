@@ -23,5 +23,5 @@ public interface ReplyMapper {
 	
 	//6.총리프개수보기
 	ReplyVO count(Long bno);
-
+	
 }

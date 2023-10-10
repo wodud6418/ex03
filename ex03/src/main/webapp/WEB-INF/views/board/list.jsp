@@ -18,10 +18,10 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            게시글 목록 보기(<a href="register">게시글 쓰기</a>)     
+                            게시글 목록 보기(<a href="register">게시글 쓰기</a>)                              
                         </div>
                           <div class="count">
-                         전체 게시글 개수 ${count }  그리고 오늘 작성한 게시글 개수는... ${count2 } 
+                         전체 게시글 개수 ${count }  그리고 오늘 작성한 게시글 개수는... ${count2 }     그리고 리플이 달린 전체 글개수는 ${replyc }
                          </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -42,10 +42,12 @@
 <c:forEach items="${list}" var="board">
 <tr>
     <td>${board.bno}</td>
-    <td><a href="/board/get?bno=${board.bno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}"><c:out value="${board.title}"/></a></td>
-    <td><c:out value="${board.writer}"/></td>
-    <td class="center"><fmt:formatDate pattern="yy/MM/dd"  value="${board.regdate}"/> </td>
-    <td class="center"><fmt:formatDate pattern="yy/MM/dd"  value="${board.updatedate}"/></td>
+    <td><a href="/board/get?bno=${board.bno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}"><c:out value="${board.title}"/></a>(<c:if test="${board.replycount!=null}">
+  	${board.replycount}</c:if><c:if test="${board.replycount==null}"> 0</c:if> )</td>
+    <td><c:out value="${board.writer}"/>
+    </td>
+    <td class="center"><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate}"/> </td>
+    <td class="center"><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updatedate}"/></td>
     <td>${board.hit}</td>
     <td>${board.hao}</td>
 </tr>

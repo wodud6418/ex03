@@ -28,6 +28,8 @@
       <select id="count"   resultType="org.zerock.domain.ReplyVO">
        select count(*) from tbl_reply  where bno=#{bno} 
       </select>
+      
+
     
 </mapper>
 	

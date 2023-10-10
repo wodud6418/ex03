@@ -18,6 +18,7 @@ public interface ReplyService {
 		 ReplyVO get(Long rno);  //get   /replies/2
 	//한 게시글에 대한 리플개수
 		 ReplyVO count(Long bno);
+
 		
 
 }
