@@ -3,6 +3,7 @@ package org.zerock.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
+import org.zerock.domain.BestBoard;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.HourVO;
@@ -43,8 +44,9 @@ public interface BoardMapper {
 	//보너스 (시간대별 글개수 통계 작성일 기준) 00  5  / 01  1 / ... / 23   11
 	List<HourVO> hourBoard();
 	
-	//전체 글개수 가져오기;
+	//전체 글개수(검색에도 대응) 가져오기;
 	Long count(Criteria cri);
+	
 	
 	//오늘작성 개시물 글 개수 가져오기;
 	Long count2();
@@ -55,9 +57,15 @@ public interface BoardMapper {
 	//좋아요
 	void updateHao(int bno);
 	
-	//리플이달린 글의개수
-	Long replyc(Criteria cri);
+	//오늘작성 리플 글 개수 가져오기;
+	Long newreply();
 	
+	//1시간동안의 인기글 댓글기준 3개
+	List<BestBoard> bestBoard();
+	
+
+
+
 	
 
 	

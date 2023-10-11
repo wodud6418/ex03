@@ -1,6 +1,6 @@
 package org.zerock.domain;
 
-
+import lombok.Data;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -40,3 +40,4 @@ public class PageDTO {
 	}
 	
 }
+

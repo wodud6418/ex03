@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.zerock.domain.BestBoard;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.mapper.BoardMapper;
@@ -64,15 +65,16 @@ public class BoardServiceImpl implements BoardService {
 
 	}
 	
-	@Override
-	public Long replyc(Criteria cri) {
-		return mapper.replyc(cri);
-
-	}
 	
 	@Override
 	public Long count2() {
 		return mapper.count2();
+
+	}
+	
+	@Override
+	public Long newreply() {
+		return mapper.newreply();
 
 	}
 
@@ -81,6 +83,7 @@ public class BoardServiceImpl implements BoardService {
 		mapper.updateHit(boardNo);
 		
 	}
+	
 	
 	@Override
 	public void updateHao(int bno) {
@@ -92,7 +95,11 @@ public class BoardServiceImpl implements BoardService {
 		Date date = new Date();
 		return date;
 	}
-	
+
+	@Override
+	public List<BestBoard> bestBoard() {
+		return mapper.bestBoard();
+	}
 	
 
 

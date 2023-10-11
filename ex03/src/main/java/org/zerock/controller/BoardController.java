@@ -10,6 +10,7 @@ import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.PageDTO;
 import org.zerock.service.BoardService;
+import org.zerock.service.ReplyService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -21,17 +22,18 @@ import lombok.extern.log4j.Log4j;
 public class BoardController {
 	
 	BoardService service; //생성자 주입
+	ReplyService replyService;
 
 	@GetMapping("/list") //전체 목록 board/list (get)
 	public void list(Model model,Criteria cri) {
 		log.info("list url 요청..");
 		model.addAttribute("list", service.getList(cri)); //글목록
-		model.addAttribute("pageMaker", new PageDTO(cri, service.count(cri)));  //페이지바 정보
+		model.addAttribute("pageMaker", new PageDTO(cri, service.count(cri)));    //페이지바 정보
+		model.addAttribute("now", service.now());
+		model.addAttribute("bnoCount", replyService.bnoCount());
 		model.addAttribute("count", service.count(cri));
-		model.addAttribute("replyc", service.replyc(cri));
 		model.addAttribute("count2", service.count2());
-		model.addAttribute("now", service.now());   
-		
+
 		// -> board/list.jsp
 	}
 	
@@ -70,10 +72,6 @@ public class BoardController {
 		log.info("글상세보기 url 요청");
 		model.addAttribute("board", service.get(bno));
 		model.addAttribute("cri", cri);
-		service.updateHit(bno.intValue());
-	
-		
-		
 		// -> board/get.jsp
 	}
 	
@@ -95,19 +93,19 @@ public class BoardController {
 		}
 	}
 
-			
-	
 	
 	// 수정(수정글-BoardV) board/modify (post) <- 입력화면(get)
 	@PostMapping("/modify")
 	public String modify(BoardVO vo,RedirectAttributes rttr,Criteria cri) {
 		log.info("수정 url 요청:");
+	
 		if(service.modify(vo)) {
 			rttr.addFlashAttribute("oper", "modify");
 			rttr.addFlashAttribute("result", vo.getBno()); 
 		}
 		return "redirect:/board/list?pageNum="+cri.getPageNum()+
 				"&amount="+cri.getAmount();	
+	
 	}
 	
 	//좋아요 처리
@@ -118,7 +116,22 @@ public class BoardController {
 		
 	}
 	
-
+	@GetMapping("/newSearch")
+	public void newSearch() {
+		   
+	}
+	
+	@GetMapping("/newReply")
+	public void newReply(Model model) {
+		model.addAttribute("newreply",service.newreply());
+	}
+	
+	@GetMapping("/bestboard")
+	public void bestboard() {
+		   
+	}
+	
+	
 	
 	
 }

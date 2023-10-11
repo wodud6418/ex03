@@ -24,4 +24,11 @@ public interface ReplyMapper {
 	//6.총리프개수보기
 	ReplyVO count(Long bno);
 	
+	//보너스 리플이 달린 글개수
+	Long bnoCount();
+	
+	List<ReplyVO>newreplylist();
+
 }
+
+	

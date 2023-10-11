@@ -36,7 +36,7 @@
 	<!-- id는 메소드 이름, resultType은 결과를 넣어줄 객체(한행) -->
 	<!-- resultType은 select 문에만 필요 -->
 	<select id="getList" resultType="org.zerock.domain.BoardVO">
-		select * from tbl_board order by bno desc
+		select * from tbl_board  order by bno desc
 	</select>
 	
 	<select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
@@ -101,6 +101,12 @@
 			where TO_char(updatedate,'YY/MM/DD')=TO_CHAR(SYSDATE,'YY/MM/DD')
 	</select>
 	
+	<select id="newreply" resultType="long">
+			SELECT count(*)
+			from tbl_reply
+			where TO_char(updatedate,'YY/MM/DD')=TO_CHAR(SYSDATE,'YY/MM/DD')
+	</select>
+	
 	
 	<select id="count" resultType="long">
 		select count(*) from tbl_board 
@@ -111,9 +117,13 @@
 	
 	<select id="replyc" resultType="long">
 		select count(distinct bno)
-       from tbl_reply where
-		<include refid="criteria"></include>
-	   rno>=1
+       from tbl_reply 
+	</select>
+	
+	<select id="toprno" resultType="long">
+	select bno
+   from(select bno, count(*) rcount from tbl_reply group by bno)
+	where rcount = (select max(count(*))maxreply from tbl_reply group by bno)
 	</select>
 	
 	<select id="lastBoard" resultType="org.zerock.domain.BoardVO">
@@ -140,6 +150,20 @@
 	update tbl_board set hao = hao + 1 
 	where bno = #{bno}
   </update>
+  
+  <select id="bestBoard"  resultType="org.zerock.domain.BestBoard">
+  <![CDATA[ 
+ 	 select title,rcount
+	 from tbl_board join 
+  		  (select *
+    	   from(select bno,count(*) rcount      
+       			 from(select * from tbl_reply where updatedate > (select sysdate-(1/24) from dual))     
+      			 group by bno order by rcount desc)
+    	  where rownum<4)
+    using(bno)
+    ]]>
+  
+  </select>
   
 
 

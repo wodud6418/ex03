@@ -95,13 +95,7 @@ public class BoardMapperTests {
 		cri.setKeyword("알리");
 		log.info("검색글 개수:"+boardMapper.count(cri));
 	}
-	
-	@Test
-	public void Testreplyc() {
-		Criteria cri = new Criteria();
-		log.info("전체리플글 개수:"+boardMapper.replyc(cri));
 
-	}
 	
 	@Test
 	public void testLastBoard() {
@@ -110,6 +104,11 @@ public class BoardMapperTests {
 	@Test
 	public void testHouorBoard() {
 		log.info("시간대별 통계:"+boardMapper.hourBoard());
+	}
+	
+	@Test
+	public void testBestBoard() {
+		boardMapper.bestBoard();
 	}
 	
 

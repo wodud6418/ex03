@@ -21,7 +21,7 @@
                             게시글 목록 보기(<a href="register">게시글 쓰기</a>)                              
                         </div>
                           <div class="count">
-                         전체 게시글 개수 ${count }  그리고 오늘 작성한 게시글 개수는... ${count2 }     그리고 리플이 달린 전체 글개수는 ${replyc }
+                         전체 게시글 개수 ${count }  그리고 오늘 작성한 게시글 개수는... ${count2 }  그리고 관심 글개수:<span id="replybnocount"></span> 
                          </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -160,6 +160,34 @@ $(function)(){											//해결책: 있는 요소의 on 걸고 이후 확인
 	    	$("#myModal").modal("show");
 	    }
    </script>
+   
+   <script>
+//1. ajax 통해서 데이터 가져오기
+
+$.ajax({   
+		url:"/myapi/replybnocount"
+		type:"get" , 
+		success:function(tata){
+			//2. 가져온 데이터 화면에 출력
+			$("#replybnocount").text(replybnocount);			
+		}
+	
+});
+</script>
+
+   <script>
+//1. ajax 통해서 데이터 가져오기
+
+$.ajax({   
+		url:"/myapi/bestbno"
+		type:"get" , 
+		success:function(tata){
+			//2. 가져온 데이터 화면에 출력
+			$("#bestbno").text(bestbno);			
+		}
+	
+});
+</script>
 
 </body>
 

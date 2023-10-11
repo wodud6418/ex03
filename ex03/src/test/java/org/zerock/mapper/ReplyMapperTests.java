@@ -45,5 +45,9 @@ public class ReplyMapperTests {
 					log.info("aaa");
 				}
 				
+				@Test
+				public void newreplylist() {
+					mapper.newreplylist();
+				}
 
 }

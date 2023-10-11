@@ -3,6 +3,7 @@ package org.zerock.service;
 import java.util.Date;
 import java.util.List;
 
+import org.zerock.domain.BestBoard;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 
@@ -22,8 +23,8 @@ public interface BoardService {
 	//6.전체글 개수 가져오기
 	Long count(Criteria cri);
 	
-	//6.전체글 리플수 가져오기
-	Long replyc(Criteria cri);
+	//오늘작성 리플개수가져오기
+	Long newreply();
 	
 	//7.오늘작성게시물개수가져오기
 	Long count2();
@@ -34,6 +35,13 @@ public interface BoardService {
 	
 	//현재시간 
 	Date now();
+	
+  //실시간 인기글
+  List<BestBoard> bestBoard();
+	
+
+
+
 
 }
 

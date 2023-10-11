@@ -23,6 +23,11 @@ public class ReplyServiceImpl implements ReplyService {
 	public List<ReplyVO> getList(Long bno) {
 		return mapper.getList(bno);
 	}
+	
+	@Override
+	public List<ReplyVO> newreplylist() {
+		return mapper.newreplylist();
+	}
 
 	@Override
 	public int remove(Long rno) {
@@ -44,11 +49,15 @@ public class ReplyServiceImpl implements ReplyService {
 		return mapper.count(bno);
 	}
 	
-
-	
-	
-	
-
-
+	@Override
+	public Long bnoCount() {
+		return mapper.bnoCount();
+	}
 
 }
+
+	
+
+
+
+
