@@ -88,7 +88,8 @@ public class MyAPIController {
 	}
 	
 	@GetMapping(value="/myapi/board/bestboard",
-		produces= MediaType.APPLICATION_XML_VALUE)
+			produces= {MediaType.APPLICATION_JSON_VALUE,
+					MediaType.APPLICATION_XML_VALUE})
 	 public List<BestBoard> bestBoard() {
 		return boardService.bestBoard();
 	}
